@@ -1,15 +1,18 @@
+val compose = "1.3.1"
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
-    compileSdk = 33
+    val sdk = 33
+    compileSdk = sdk
 
     defaultConfig {
         applicationId = "io.github.sp0rk.spork"
         minSdk = 29
-        targetSdk = 33
+        targetSdk = sdk
         versionCode = 1
         versionName = "1.0"
 
@@ -39,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
+        kotlinCompilerExtensionVersion = compose
     }
     packagingOptions {
         resources {
@@ -49,16 +52,25 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.compose.ui:ui:${Versions.compose}")
-    implementation("androidx.compose.material:material:${Versions.compose}")
-    implementation("androidx.compose.ui:ui-tooling-preview:${Versions.compose}")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.1")
-    implementation("androidx.activity:activity-compose:1.4.0")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-tooling:${Versions.compose}")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:${Versions.compose}")
+    val coreKtx = "1.9.0"
+    val lifecycleRuntimeKtx = "2.5.1"
+    val activityCompose = "1.6.1"
+    implementation("androidx.core:core-ktx:$coreKtx")
+    implementation("androidx.compose.ui:ui:$compose")
+    implementation("androidx.compose.material:material:$compose")
+    implementation("androidx.compose.ui:ui-tooling-preview:$compose")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleRuntimeKtx")
+    implementation("androidx.activity:activity-compose:$activityCompose")
+
+    val junit = "4.13.2"
+    testImplementation("junit:junit:$junit")
+
+    val extJunit = "1.1.4"
+    val espressoCore = "3.5.0"
+    androidTestImplementation("androidx.test.ext:junit:$extJunit")
+    androidTestImplementation("androidx.test.espresso:espresso-core:$espressoCore")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$compose")
+
+    debugImplementation("androidx.compose.ui:ui-tooling:$compose")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose")
 }
