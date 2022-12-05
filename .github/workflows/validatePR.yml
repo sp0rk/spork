@@ -31,6 +31,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           lint_xml_file: app/build/reports/lint-results-debug.xml
           reporter: github-pr-review
+          level: warning
           reviewdog_flags: '-fail-on-error=true'
 
   kotlinLint:
@@ -47,6 +48,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review
+          level: warning
           android: true
           fail_on_error: true
 
@@ -60,6 +62,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
+          level: warning
           fail_on_error: true
 
   actionLint:
@@ -72,6 +75,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
+          level: warning
           fail_on_error: true
 
   misspell:
@@ -87,6 +91,7 @@ jobs:
           locale: "US"
           fail_on_error: true
           reporter: github-pr-review
+          level: warning
 
   approve:
     runs-on: ubuntu-latest

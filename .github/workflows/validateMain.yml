@@ -32,6 +32,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           lint_xml_file: app/build/reports/lint-results-debug.xml
           reporter: github-check
+          level: warning
           reviewdog_flags: '-fail-on-error=true'
 
 
@@ -49,6 +50,7 @@ jobs:
         with:
           github_token: ${{ secrets.github_token }}
           reporter: github-check
+          level: warning
           android: true
           fail_on_error: true
 
@@ -62,6 +64,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-check
+          level: warning
           fail_on_error: true
 
   actionLint:
@@ -74,6 +77,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-check
+          level: warning
           fail_on_error: true
 
   misspell:
@@ -89,3 +93,4 @@ jobs:
           locale: "US"
           fail_on_error: true
           reporter: github-check
+          level: warning
