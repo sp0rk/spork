@@ -1,25 +1,21 @@
 val compose = "1.3.1"
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
     val sdk = 33
+
+    namespace = "io.github.sp0rk.designSystem"
     compileSdk = sdk
 
     defaultConfig {
-        applicationId = "io.github.sp0rk.spork"
         minSdk = 29
         targetSdk = sdk
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
     }
 
     compileOptions {
@@ -60,5 +56,4 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:$compose")
     debugImplementation("androidx.compose.ui:ui-test-manifest:$compose")
 
-    implementation(project(":designSystem"))
 }

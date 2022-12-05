@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Spork"
 include(":app")
+include(":designSystem")

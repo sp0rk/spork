@@ -1,4 +1,4 @@
-package io.github.sp0rk.spork.ui.theme
+package io.github.sp0rk.designSystem.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
