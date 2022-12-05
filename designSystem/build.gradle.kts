@@ -1,18 +1,17 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
 }
 
 android {
     val sdk = 33
+
+    namespace = "io.github.sp0rk.designSystem"
     compileSdk = sdk
 
     defaultConfig {
-        applicationId = "io.github.sp0rk.spork"
         minSdk = 29
         targetSdk = sdk
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -37,6 +36,4 @@ android {
 
 dependencies {
     androidModuleCommonDependencies()
-
-    implementation(project(":designSystem"))
 }

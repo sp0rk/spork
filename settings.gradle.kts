@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -15,3 +17,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Spork"
 include(":app")
+include(":designSystem")
