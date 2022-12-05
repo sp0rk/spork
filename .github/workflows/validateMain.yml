@@ -1,0 +1,91 @@
+name: Validate main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  androidLint:
+    name: Android Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+
+      - name: Setup JDK 11
+        uses: actions/setup-java@master
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Run Gradle build
+        run: ./gradlew build
+
+      - name: Run Android Lint
+        uses: dvdandroid/action-android-lint@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          lint_xml_file: app/build/reports/lint-results-debug.xml
+          reporter: github-check
+          reviewdog_flags: '-fail-on-error=true'
+
+
+  kotlinLint:
+    name: Kotlin Lint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@master
+        with:
+          fetch-depth: 1
+      - name: Run Kotlin Lint
+        uses: ScaCap/action-ktlint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-check
+          android: true
+          fail_on_error: true
+
+  markdownLint:
+    name: Markdown Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run Markdown Lint
+        uses: reviewdog/action-markdownlint@v0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-check
+          fail_on_error: true
+
+  actionLint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Run Github Actions Lint
+        uses: reviewdog/action-actionlint@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-check
+          fail_on_error: true
+
+  misspell:
+    name: Misspell
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run Misspell
+        uses: reviewdog/action-misspell@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          locale: "US"
+          fail_on_error: true
+          reporter: github-check
