@@ -12,6 +12,14 @@ private fun DependencyHandler.androidTestImplementation(dependencyNotation: Any)
 private fun DependencyHandler.debugImplementation(dependencyNotation: Any) =
     add("debugImplementation", dependencyNotation)
 
+private fun DependencyHandler.ksp(dependencyNotation: Any) =
+    add("ksp", dependencyNotation)
+
+fun DependencyHandler.dowelDependencies() {
+    implementation("com.github.jayasuryat.dowel:dowel:${Version.dowel}")
+    ksp("com.github.jayasuryat.dowel:dowel-processor:${Version.dowel}")
+}
+
 fun DependencyHandler.androidModuleCommonDependencies() {
     implementation("androidx.core:core-ktx:${Version.coreKtx}")
     implementation("androidx.compose.ui:ui:${Version.compose}")

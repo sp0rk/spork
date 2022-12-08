@@ -7,7 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import io.github.sp0rk.designSystem.component.Card
+import io.github.sp0rk.designSystem.component.Entry
+import io.github.sp0rk.designSystem.component.EntryCard
 import io.github.sp0rk.designSystem.theme.SporkTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,7 +21,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Card("Android")
+                    EntryCard(Entry("Android", "Is not bad"))
                 }
             }
         }

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") version Version.kspPlugin
 }
 
 android {
@@ -32,8 +33,14 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Version.compose
     }
+    kotlin {
+        sourceSets.configureEach {
+            kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+        }
+    }
 }
 
 dependencies {
     androidModuleCommonDependencies()
+    dowelDependencies()
 }

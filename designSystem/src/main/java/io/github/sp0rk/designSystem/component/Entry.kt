@@ -1,6 +1,10 @@
 package io.github.sp0rk.designSystem.component
 
+import androidx.annotation.Size
+import com.jayasuryat.dowel.annotation.Dowel
+
+@Dowel
 data class Entry(
-    val title: String,
-    val content: String
+    @Size(30) val title: String,
+    @Size(300) val content: String
 )

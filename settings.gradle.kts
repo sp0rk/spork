@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven(url = "https://jitpack.io")
     }
 }
 
@@ -13,8 +14,10 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven(url = "https://jitpack.io")
     }
 }
+
 rootProject.name = "Spork"
 include(":app")
 include(":designSystem")
