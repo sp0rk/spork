@@ -18,6 +18,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import io.github.sp0rk.designSystem.R
+import io.github.sp0rk.domain.model.Entry
+import io.github.sp0rk.domain.model.EntryPreviewParamProvider
 
 @Composable
 fun EntryCard(entry: Entry) {

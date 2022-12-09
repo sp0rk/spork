@@ -1,18 +1,18 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") version Version.kspPlugin
 }
 
 android {
     val sdk = 33
+
+    namespace = "io.github.sp0rk.domain"
     compileSdk = sdk
 
     defaultConfig {
-        applicationId = "io.github.sp0rk.spork"
         minSdk = 29
         targetSdk = sdk
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -33,11 +33,14 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Version.compose
     }
+    kotlin {
+        sourceSets.configureEach {
+            kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+        }
+    }
 }
 
 dependencies {
     androidModuleCommonDependencies()
-
-    implementation(project(":designSystem"))
-    implementation(project(":domain"))
+    dowelDependencies()
 }
