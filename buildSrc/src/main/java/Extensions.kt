@@ -3,6 +3,9 @@ import org.gradle.api.artifacts.dsl.DependencyHandler
 private fun DependencyHandler.implementation(dependencyNotation: Any) =
     add("implementation", dependencyNotation)
 
+private fun DependencyHandler.kapt(dependencyNotation: Any) =
+    add("kapt", dependencyNotation)
+
 private fun DependencyHandler.testImplementation(dependencyNotation: Any) =
     add("testImplementation", dependencyNotation)
 
@@ -19,6 +22,16 @@ fun DependencyHandler.androidModuleCommonDependencies() {
     implementation("androidx.compose.ui:ui-tooling-preview:${Version.compose}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycleRuntimeKtx}")
     implementation("androidx.activity:activity-compose:${Version.activityCompose}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${Version.coroutines}")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.coroutines}")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.google.dagger:hilt-android:${Version.hilt}")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+    implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
+    implementation("io.coil-kt:coil-compose:1.4.0")
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.17.0")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
+
 
     testImplementation("junit:junit:${Version.junit}")
 

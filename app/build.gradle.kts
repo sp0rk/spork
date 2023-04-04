@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    kotlin("kapt")
 }
 
 android {
@@ -39,4 +41,10 @@ dependencies {
     androidModuleCommonDependencies()
 
     implementation(project(":designSystem"))
+}
+
+
+// Allow references to generated code
+kapt {
+    correctErrorTypes = true
 }
