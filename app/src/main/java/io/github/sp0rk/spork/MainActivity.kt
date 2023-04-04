@@ -3,16 +3,11 @@ package io.github.sp0rk.spork
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import io.github.sp0rk.spork.presentation.navigation.NavGraph
+import io.github.sp0rk.spork.ui.theme.AndroidCleanArchitectureTheme
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.sp0rk.designSystem.component.Greeting
-import io.github.sp0rk.designSystem.theme.SporkTheme
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -21,10 +16,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SporkTheme {
+            AndroidCleanArchitectureTheme {
                 navController = rememberNavController()
                 NavGraph(navController = navController)
             }
         }
     }
 }
+
