@@ -8,6 +8,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import io.github.sp0rk.domain.repository.EntryRepository
+import io.github.sp0rk.domain.useCase.EntryUsecase
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -17,5 +19,10 @@ object UseCaseModule {
     fun provideMovieUseCases(movieRepository: MovieRepository) = MovieUseCases(
         getPopularMoviesUseCase = GetPopularMoviesUseCase(movieRepository = movieRepository),
         getMoviesFromDBUseCase = GetMoviesFromDBUseCase(movieRepository = movieRepository)
+    )
+
+    @Provides
+    fun provideEntryUseCase(entryRepository: EntryRepository) = EntryUsecase(
+        entryRepository
     )
 }

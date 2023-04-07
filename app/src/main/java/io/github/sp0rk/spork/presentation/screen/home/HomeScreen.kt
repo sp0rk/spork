@@ -5,6 +5,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -17,7 +18,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
 
     val systemUiController = rememberSystemUiController()
     val systemBarColor = MaterialTheme.colors.AppThemeColor
-    val allMovies = viewModel.getAllPopularMovies.collectAsLazyPagingItems()
+    val entries = viewModel.queryEntries().collectAsState(emptyList())
 
     SideEffect {
         systemUiController.setStatusBarColor(
@@ -32,7 +33,7 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
             HomeTopBar()
         },
         content = {
-            MovieListContent(allMovies = allMovies, navController = navController)
+            EntryListContent(entries = entries.value, navController = navController)
         }
     )
 }
