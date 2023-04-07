@@ -1,4 +1,4 @@
-package io.github.sp0rk.data.db.security
+package io.github.sp0rk.data.db.factory
 
 import java.security.SecureRandom
 

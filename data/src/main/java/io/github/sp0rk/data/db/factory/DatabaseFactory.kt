@@ -1,9 +1,8 @@
-package io.github.sp0rk.data.db
+package io.github.sp0rk.data.db.factory
 
 import android.app.Application
 import androidx.room.Room
-import io.github.sp0rk.data.db.security.PassphraseGenerator
-import io.github.sp0rk.data.db.security.PassphraseStore
+import io.github.sp0rk.data.db.SporkDb
 import net.sqlcipher.database.SupportFactory
 
 class DatabaseFactory(

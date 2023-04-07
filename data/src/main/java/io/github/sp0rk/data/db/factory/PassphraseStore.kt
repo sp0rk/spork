@@ -1,10 +1,9 @@
-package io.github.sp0rk.data.db.security
+package io.github.sp0rk.data.db.factory
 
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
-import java.nio.charset.Charset
 
 class PassphraseStore(
     applicationContext: Context
@@ -29,4 +28,4 @@ class PassphraseStore(
 
 private const val PREFS_FILE_NAME = "SporkPassphraseStore"
 private const val KEY_PASSPHRASE = "passphrase"
-private val CHARSET = Charset.defaultCharset()
+private val CHARSET = Charsets.ISO_8859_1

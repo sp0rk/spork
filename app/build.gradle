@@ -9,12 +9,12 @@ if (rootProject.file("local.properties").exists()) {
     properties.load(rootProject.file("local.properties").newDataInputStream())
 }
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "io.github.sp0rk.spork"
-        minSdk 21
-        targetSdk 32
+        minSdk 23
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 

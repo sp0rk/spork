@@ -7,8 +7,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.sp0rk.data.db.*
-import io.github.sp0rk.data.db.security.PassphraseGenerator
-import io.github.sp0rk.data.db.security.PassphraseStore
+import io.github.sp0rk.data.db.factory.DatabaseFactory
+import io.github.sp0rk.data.db.factory.PassphraseGenerator
+import io.github.sp0rk.data.db.factory.PassphraseStore
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -27,10 +28,16 @@ object DatabaseModule {
     ): SporkDb = databaseFactory.provideDatabase(app)
 
     @Provides
+    fun provideDatabaseFactory(
+        passphraseStore: PassphraseStore,
+        passphraseGenerator: PassphraseGenerator,
+    ): DatabaseFactory = DatabaseFactory(passphraseStore, passphraseGenerator)
+
+    @Provides
     fun provideEntryDao(sporkDb: SporkDb): EntryDao = sporkDb.entryDao()
 
     @Provides
-    fun provideDatabase(app: Application): MovieDB =
+    fun provideMovieDatabase(app: Application): MovieDB =
         Room.databaseBuilder(app, MovieDB::class.java, "movie_db").fallbackToDestructiveMigration()
             .build()
 
