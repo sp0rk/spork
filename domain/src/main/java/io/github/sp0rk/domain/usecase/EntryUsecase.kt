@@ -1,4 +1,4 @@
-package io.github.sp0rk.domain.useCase
+package io.github.sp0rk.domain.usecase
 
 import io.github.sp0rk.domain.repository.EntryRepository
 
