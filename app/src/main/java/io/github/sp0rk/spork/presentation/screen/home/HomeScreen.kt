@@ -8,14 +8,14 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import io.github.sp0rk.spork.R
+import io.github.sp0rk.spork.ui.component.InputDialogView
 import io.github.sp0rk.spork.ui.component.isScrollingUp
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -25,6 +25,10 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
     val entries = viewModel.queryEntries().collectAsState(emptyList())
 
     val listState = rememberLazyListState()
+    val context = LocalContext.current
+    var showCustomDialog by remember {
+        mutableStateOf(false)
+    }
 
     Scaffold(
         topBar = {
@@ -36,15 +40,25 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
                 icon = { Icon(Icons.Filled.Add, stringResource(id = R.string.details)) },
                 expanded = listState.isScrollingUp(),
                 onClick = {
-
+                    showCustomDialog = true
                 }
             )
         }) { contentPadding ->
-        Box(modifier = Modifier
-            .padding(contentPadding)
-            .fillMaxWidth()) {
-            EntryListContent(entries = entries.value, navController = navController, listState = listState)
+        Box(
+            modifier = Modifier
+                .padding(contentPadding)
+                .fillMaxWidth()
+        ) {
+            EntryListContent(
+                entries = entries.value,
+                navController = navController,
+                listState = listState
+            )
         }
+    }
+
+    if (showCustomDialog) {
+        InputDialogView(onDismiss = { showCustomDialog = !showCustomDialog })
     }
 }
 
