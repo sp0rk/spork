@@ -27,7 +27,7 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SporkTheme {
+            SporkTheme(darkTheme = false) {
                 navController = rememberNavController()
                 NavGraph(navController = navController)
             }
