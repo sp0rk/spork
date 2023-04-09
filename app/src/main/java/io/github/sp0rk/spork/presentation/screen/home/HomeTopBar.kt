@@ -1,8 +1,8 @@
 package io.github.sp0rk.spork.presentation.screen.home
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
+import androidx.biometric.BiometricManager.Authenticators
+import androidx.biometric.BiometricPrompt
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
 import io.github.sp0rk.spork.R
 import io.github.sp0rk.spork.ui.theme.AppContentColor
 import io.github.sp0rk.spork.ui.theme.AppThemeColor
@@ -37,7 +38,9 @@ fun HomeTopBar(
         elevation = 0.dp,
         actions = {
 
-            IconButton(onClick = { showMessage(context = context) }) {
+            IconButton(onClick = {
+                showBiometrics(context = context)
+            }) {
                 Icon(
                     imageVector = Icons.Default.Favorite,
                     contentDescription = "Favourite Icon",
@@ -48,10 +51,57 @@ fun HomeTopBar(
     )
 }
 
-fun showMessage(context: Context) {
-    val browserIntent = Intent(
-        Intent.ACTION_VIEW,
-        Uri.parse("https://github.com/Farhandroid/AndroidCleanArchitecture")
-    )
-    ContextCompat.startActivity(context, browserIntent, null)
+fun showBiometrics(context: Context) {
+    val executor = ContextCompat.getMainExecutor(context)
+    val biometricPrompt = BiometricPrompt(context as FragmentActivity, executor,
+        object : BiometricPrompt.AuthenticationCallback() {
+            override fun onAuthenticationError(
+                errorCode: Int,
+                errString: CharSequence
+            ) {
+                super.onAuthenticationError(errorCode, errString)
+                println("Jurec error $errorCode $errString")
+            }
+
+            override fun onAuthenticationSucceeded(
+                result: BiometricPrompt.AuthenticationResult
+            ) {
+                super.onAuthenticationSucceeded(result)
+                println("Jurec success $result")
+            }
+
+            override fun onAuthenticationFailed() {
+                super.onAuthenticationFailed()
+                println("Jurec failed")
+            }
+        })
+    val promptInfo = BiometricPrompt.PromptInfo.Builder()
+        .setTitle("Biometric login for my app")
+        .setSubtitle("Log in using your biometric credential")
+        .setAllowedAuthenticators(Authenticators.DEVICE_CREDENTIAL or Authenticators.BIOMETRIC_STRONG)
+        .build()
+
+    biometricPrompt.authenticate(promptInfo)
+//        println("Jurec checking")
+//        val biometricManager = BiometricManager.from(context)
+//        when (biometricManager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL)) {
+//            BiometricManager.BIOMETRIC_SUCCESS ->
+//                println("Jurec App can authenticate using biometrics.")
+//            BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE ->
+//                println("Jurec No biometric features available on this device.")
+//            BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE ->
+//                println("Jurec Biometric features are currently unavailable.")
+//            BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
+//                // Prompts the user to create credentials that your app accepts.
+//                println("Jurec none enrolled")
+//                val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
+//                    putExtra(
+//                        Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
+//                        BiometricManager.Authenticators.BIOMETRIC_STRONG or BiometricManager.Authenticators.DEVICE_CREDENTIAL
+//                    )
+//                }
+//                ActivityCompat.startActivityForResult(context as Activity, enrollIntent, 1, null)
+//            }
+//        }
+//        println("Jurec checked")
 }
