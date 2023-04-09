@@ -3,6 +3,7 @@ package io.github.sp0rk.spork.presentation.screen.home
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -18,8 +19,13 @@ import io.github.sp0rk.domain.model.Entry
 import io.github.sp0rk.spork.ui.theme.ItemBackgroundColor
 
 @Composable
-fun EntryListContent(entries: List<Entry>, navController: NavHostController) {
+fun EntryListContent(
+    entries: List<Entry>,
+    navController: NavHostController,
+    listState: LazyListState
+) {
     LazyColumn(
+        state = listState,
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp)
     ) {
 
