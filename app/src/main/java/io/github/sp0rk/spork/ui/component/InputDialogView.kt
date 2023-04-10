@@ -1,6 +1,5 @@
 package io.github.sp0rk.spork.ui.component
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.material3.CardElevation
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -17,11 +15,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
-import io.github.sp0rk.spork.presentation.screen.home.HomeViewModel
+import io.github.sp0rk.spork.presentation.screen.home.EntriesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InputDialogView(onDismiss: () -> Unit, viewModel: HomeViewModel = hiltViewModel()) {
+fun InputDialogView(onDismiss: () -> Unit, viewModel: EntriesViewModel = hiltViewModel()) {
     val context = LocalContext.current
     var title by remember {
         mutableStateOf("")

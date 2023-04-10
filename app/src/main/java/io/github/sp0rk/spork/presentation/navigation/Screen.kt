@@ -1,6 +1,12 @@
 package io.github.sp0rk.spork.presentation.navigation
 
-sealed class Screen(val route: String) {
-    object Entries : Screen("entries")
-    object Settings : Screen("settings")
+import androidx.annotation.StringRes
+import io.github.sp0rk.spork.R
+
+enum class Screen(@StringRes val title: Int, vararg val actions: Action) {
+    Entries(title = R.string.entries, Action.Settings),
+    Settings(title = R.string.settings),
+    ;
 }
+
+

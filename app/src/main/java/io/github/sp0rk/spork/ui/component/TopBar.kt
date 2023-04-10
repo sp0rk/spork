@@ -15,46 +15,46 @@ import androidx.navigation.NavHostController
 import io.github.sp0rk.spork.presentation.navigation.Screen
 import io.github.sp0rk.spork.ui.theme.Typography
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun TopBar(
-    navController: NavHostController
-) {
-    TopAppBar(
-        navigationIcon = {
-            if (navController.currentDestination?.route != Screen.Entries.route) {
-                IconButton(onClick = {
-                    navController.navigateUp()
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            }
-        },
-        title = {
-            Text(
-                text = navController.currentDestination!!.displayName,
-                style = Typography.titleLarge
-            )
-        },
-        actions = {
-            if (navController.currentDestination?.route != Screen.Settings.route) {
-                IconButton(onClick = {
-                    navController.navigate(Screen.Settings.route)
-                }) {
-                    Icon(
-                        imageVector = Icons.Default.Settings,
-                        contentDescription = "Settings",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
-                }
-            }
-        }
-    )
-}
+//@OptIn(ExperimentalMaterial3Api::class)
+//@Composable
+//fun TopBar(
+//    navController: NavHostController
+//) {
+//    TopAppBar(
+//        navigationIcon = {
+//            if (navController.currentDestination?.route != Screen.Entries.route) {
+//                IconButton(onClick = {
+//                    navController.navigateUp()
+//                }) {
+//                    Icon(
+//                        imageVector = Icons.Default.ArrowBack,
+//                        contentDescription = "Back",
+//                        tint = MaterialTheme.colorScheme.primary
+//                    )
+//                }
+//            }
+//        },
+//        title = {
+//            Text(
+//                text = navController.currentDestination!!.displayName,
+//                style = Typography.titleLarge
+//            )
+//        },
+//        actions = {
+//            if (navController.currentDestination?.route != Screen.Settings.route) {
+//                IconButton(onClick = {
+//                    navController.navigate(Screen.Settings.route)
+//                }) {
+//                    Icon(
+//                        imageVector = Icons.Default.Settings,
+//                        contentDescription = "Settings",
+//                        tint = MaterialTheme.colorScheme.primary
+//                    )
+//                }
+//            }
+//        }
+//    )
+//}
 
 fun showBiometrics(context: Context) {
     val executor = ContextCompat.getMainExecutor(context)

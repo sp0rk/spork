@@ -16,12 +16,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import io.github.sp0rk.spork.R
 import io.github.sp0rk.spork.ui.component.InputDialogView
-import io.github.sp0rk.spork.ui.component.TopBar
 import io.github.sp0rk.spork.ui.component.isScrollingUp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
+fun EntriesScreen(navController: NavHostController, viewModel: EntriesViewModel = hiltViewModel()) {
 
     val entries = viewModel.queryEntries().collectAsState(emptyList())
 
@@ -32,9 +31,6 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
     }
 
     Scaffold(
-        topBar = {
-            TopBar(navController)
-        },
         floatingActionButton = {
             ExtendedFloatingActionButton(
                 text = { Text(stringResource(id = R.string.details)) },

@@ -9,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
-import io.github.sp0rk.spork.ui.component.TopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -17,10 +16,7 @@ fun SettingsScreen(
     navController: NavHostController,
     viewModel: SettingsViewModel = hiltViewModel()
 ) {
-    Scaffold(
-        topBar = {
-            TopBar(navController)
-        }) { contentPadding ->
+    Scaffold { contentPadding ->
         Box(
             modifier = Modifier
                 .padding(contentPadding)
