@@ -22,7 +22,7 @@ fun EntryListContent(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(entries) { entry ->
-            EntryListItem(entry = entry, navController = navController)
+            EntryItem(entry = entry, navController = navController)
         }
     }
 }
