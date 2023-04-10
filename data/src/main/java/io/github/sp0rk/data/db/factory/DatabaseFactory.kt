@@ -4,8 +4,9 @@ import android.app.Application
 import androidx.room.Room
 import io.github.sp0rk.data.db.SporkDb
 import net.sqlcipher.database.SupportFactory
+import javax.inject.Inject
 
-class DatabaseFactory(
+class DatabaseFactory @Inject constructor(
     private val passphraseStore: PassphraseStore,
     private val passphraseGenerator: PassphraseGenerator,
 ) {
