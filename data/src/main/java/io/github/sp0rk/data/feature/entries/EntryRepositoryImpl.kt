@@ -1,10 +1,11 @@
-package io.github.sp0rk.data.repository
+package io.github.sp0rk.data.feature.entries
 
 import io.github.sp0rk.data.db.EntryDao
 import io.github.sp0rk.domain.model.Entry
 import io.github.sp0rk.domain.repository.EntryRepository
+import javax.inject.Inject
 
-class EntryRepositoryImpl(
+class EntryRepositoryImpl @Inject constructor(
     private val entryDao: EntryDao,
 ) : EntryRepository {
     override fun getEntries() = entryDao.getAllEntries()
